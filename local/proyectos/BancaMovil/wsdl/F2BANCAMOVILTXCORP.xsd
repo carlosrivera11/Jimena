@@ -1,0 +1,2071 @@
+<xsd:schema targetNamespace="http://www.bbvanet.com.co/BancaMovilTX/" xmlns:tns="http://www.bbvanet.com.co/BancaMovilTX/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <xsd:element name="POSICIONGLOBAL">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="versionFrontEnd" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="POSICIONGLOBALRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="clienteResponse" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="CONTRATOS" type="tns:contratoType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="literal" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:simpleType name="ipOctectType">
+      <xsd:restriction base="xsd:integer">
+         <xsd:minInclusive value="0"/>
+         <xsd:maxInclusive value="255"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:complexType name="ipAddressType">
+      <xsd:attribute name="IP1" type="tns:ipOctectType"/>
+      <xsd:attribute name="IP2" type="tns:ipOctectType"/>
+      <xsd:attribute name="IP3" type="tns:ipOctectType"/>
+      <xsd:attribute name="IP4" type="tns:ipOctectType"/>
+   </xsd:complexType>
+   <xsd:complexType name="statusType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="idRespuesta" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="statusRespuesta">
+            <xsd:simpleType>
+               <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="SUCCESS"/>
+                  <xsd:enumeration value="FAILED"/>
+                  <xsd:enumeration value="PENDING"/>
+                  <xsd:enumeration value="INVALID"/>
+                  <xsd:enumeration value="WOSTATE"/>
+                  <xsd:enumeration value="USED"/>
+               </xsd:restriction>
+            </xsd:simpleType>
+         </xsd:element>
+         <xsd:element maxOccurs="1" minOccurs="0" name="mensajeRespuesta" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="msjUsuario" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="fechaHoraOperacion" type="xsd:dateTime"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="fechaHoraValor" type="xsd:dateTime"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="authorizationId" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="entidadRelacionada" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="IP" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:simpleType name="tipoIdType">
+      <xsd:restriction base="xsd:string">
+         <xsd:enumeration value="CODIGO_ALTAMIRA"/>
+         <xsd:enumeration value="ALIAS"/>
+         <xsd:enumeration value="TARJETA"/>
+         <xsd:enumeration value="CEDULA_CIUDADANIA"/>
+         <xsd:enumeration value="TARJETA_IDENTIDAD"/>
+         <xsd:enumeration value="CEDULA_EXTRANJERIA"/>
+         <xsd:enumeration value="NUIP"/>
+         <xsd:enumeration value="CARNET_DIPLOMATICO"/>
+         <xsd:enumeration value="REGISTRO_CIVIL"/>
+         <xsd:enumeration value="NIP"/>
+         <xsd:enumeration value="CEDULA_EXTRANJERIA"/>
+         <xsd:enumeration value="NIT_PERSONA_JURIDICA"/>
+         <xsd:enumeration value="TARJETA_IDENTIDAD"/>
+         <xsd:enumeration value="PASAPORTE"/>
+         <xsd:enumeration value="NIT_EXTRANJERIA"/>
+         <xsd:enumeration value="SOC_EXTRANJERAS_SIN_NIT"/>
+         <xsd:enumeration value="IDENTIFICACION_FIDEICOMISO"/>
+         <xsd:enumeration value="NIT_PARA_PERSONAS_NATURALES"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:complexType name="clienteType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="tipoIdentificacion" type="tns:tipoIdType"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="numeroIdentificacion" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="primerNombre" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="segundoNombre" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="primerApellido" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="segundoApellido" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="sexo">
+            <xsd:simpleType>
+               <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="MASCULINO"/>
+                  <xsd:enumeration value="FEMENINO"/>
+               </xsd:restriction>
+            </xsd:simpleType>
+         </xsd:element>
+         <xsd:element maxOccurs="1" minOccurs="0" name="email_1" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="segmento" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="email_2" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="email_3" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="codigoInterno" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="claveOpActiva" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="ticketTimeOut" type="tns:ticketTimeOutType"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="versionFront" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="etTimeOutType">
+      <xsd:attribute name="setTimeOut" type="xsd:string"/>
+      <xsd:attribute name="useTimeOut" type="xsd:string"/>
+   </xsd:complexType>
+   <xsd:complexType name="ticketTimeOutType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="otp" type="tns:etTimeOutType"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="sesion" type="tns:etTimeOutType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="contratoType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="unbounded" minOccurs="0" name="EC" type="tns:ecType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="productoType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="unbounded" minOccurs="0" name="EP" type="tns:epType"/>
+      </xsd:sequence>
+      <xsd:attribute name="size" type="xsd:positiveInteger"/>
+   </xsd:complexType>
+   <xsd:complexType name="ecType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="0" name="tipoContrato" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="numeroContrato" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="msjUsuario" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="productos" type="tns:productoType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType mixed="true" name="ercType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="0" name="codOperacion" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="valor" type="xsd:decimal"/>
+         <xsd:element maxOccurs="unbounded" minOccurs="0" name="datos" type="xsd:string"/>
+      </xsd:sequence>
+      <xsd:attribute name="dataSize" type="xsd:positiveInteger"/>
+   </xsd:complexType>
+   <xsd:complexType name="bcoType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="IDBANCO" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="DESCBANCO" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="epType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="0" name="numeroProducto" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="desc" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="fechaVencimento" type="xsd:date"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="tipoProducto" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="tipoSubProducto" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="BANCO" type="tns:bcoType"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="estado" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="saldoPuntual" type="xsd:decimal"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="saldoDisponible" type="xsd:decimal"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="saldoCanje" type="xsd:decimal"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="divisa" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="ALIAS" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="FAV" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="numeroCuotas" type="xsd:positiveInteger"/>
+         <xsd:element maxOccurs="unbounded" minOccurs="0" name="ERC" type="tns:ercType"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="numeroDeposito" type="xsd:string"/>
+      </xsd:sequence>
+      <xsd:attribute name="ID" type="xsd:string"/>
+   </xsd:complexType>
+   <xsd:complexType name="cuentaDestinoCtasPreinsType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="0" name="numeroProducto" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="desc" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="tipoProducto" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="tipoSubProducto" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="BANCO" type="tns:bcoType"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="ALIAS" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="numeroDeposito" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="LISTADOCUENTAS">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="LISTADOCUENTASRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="ELC" type="tns:elcType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="literal" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:complexType name="cuentaDestinoType">
+      <xsd:sequence>
+         <xsd:element name="ELC" type="tns:elcType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <!--GP12202 NOVATEC SOLUTIONS INICIO-->
+   <xsd:complexType name="cliente2Type">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="tipoIdentificacion" type="tns:tipoIdType"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="numeroIdentificacion" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ep2Type">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="0" name="numeroProducto" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="tipoProducto" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="tipoSubProducto" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="banco" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="VALIDACIONCTAAFC">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="clienteRequest" type="tns:cliente2Type"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="cuentaOrigen" type="tns:ep2Type"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="productoDestino" type="tns:ep2Type"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="valor" type="xsd:decimal"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="VALIDACIONCTAAFCRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="retorno" type="tns:retornoType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="resultadoValidacion" type="tns:respValidacion"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:complexType name="respValidacion">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="indCuenta" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="indMensaje" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="retencion" type="xsd:decimal"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="retornoType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="codRetorno" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="codError" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="mensajeError" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <!--GP12202 NOVATEC SOLUTIONS INICIO-->
+   <xsd:complexType name="elcType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="0" name="INDICE" type="xsd:positiveInteger"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="NUMEROCUENTA" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="TIPO" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="saldoPuntual" type="xsd:decimal"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="saldoDisponible" type="xsd:decimal"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="divisa" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="ALIAS" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="FAV" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="MOVIMIENTOSCUENTAS">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="NUMEROCUENTA" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="FILTROFECHAINICIO" type="xsd:date"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="FILTROFECHAFIN" type="xsd:date"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="FILTROINGRESOS" type="xsd:boolean"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="FILTROPAGOS" type="xsd:boolean"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="MOVIMIENTOSCUENTASRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="NUMEROCUENTA" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ALIAS" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="FAV" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="saldoDisponible" type="xsd:decimal"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="divisa" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="LISTADOMOVSCTA" type="tns:listadoMovCtaType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="literal" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:complexType name="listadoMovCtaType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="unbounded" minOccurs="0" name="EMC" type="tns:emcType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="emcType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="INDICE" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="fechaHoraOperacion" type="xsd:dateTime"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="fechaHoraValor" type="xsd:dateTime"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="CONCEPTO" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="DESCRIPCION" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="IMPORTE" type="xsd:decimal"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="divisa" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="LISTADOTJ">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="LISTADOTJRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="ELT" type="tns:eltType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="literal" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="LISTADOTJPANENC">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="tarjeEncript" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="LISTADOTJPANENCRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ELT" type="tns:eltType1"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="literal" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:complexType name="cuentaOrigenType">
+      <xsd:sequence>
+         <xsd:element name="ELT" type="tns:eltType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="eltType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="0" name="INDICE" type="xsd:positiveInteger"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="PAN" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="TIPOTARJETA" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="DESCRIPCION" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="saldoDisponible" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="CUPO" type="xsd:decimal"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="divisa" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="ALIAS" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="FAV" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="Cuota" type="tns:cuotaType"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="proximaCuota" type="tns:cuotaType"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="fechaHoraLimitePago" type="xsd:dateTime"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="pagoMinimo" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="CUENTA" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="AMPARADA" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="eltType1">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="0" name="INDICE" type="xsd:positiveInteger"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="PAN" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="TIPOTARJETA" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="DESCRIPCION" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="saldoDisponible" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="CUPO" type="xsd:decimal"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="divisa" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="ALIAS" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="FAV" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="fechaHoraLimitePago" type="xsd:dateTime"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="pagoMinimo" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="NUMEROTARJ" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="ESTADO" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="AMPARADA" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="cuotaType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="0" name="fechaHoraLimitePago" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="pagoMinimo" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="capital" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="interescorriente" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="interesmora" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="gastosyseguros" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="valorcobertura" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="numeroCvencidas" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="MOVIMIENTOSTJS">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="NUMEROTJ" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="FILTROFECHAINICIO" type="xsd:date"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="FILTROFECHAFIN" type="xsd:date"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="FILTROINGRESOS" type="xsd:boolean"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="FILTROPAGOS" type="xsd:boolean"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="FILTRO" type="tns:filtromovTCType"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="MOVIMIENTOSTJSRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="NUMEROTJ" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ALIAS" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="FAV" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="saldoDisponible" type="xsd:decimal"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="CUPO" type="xsd:decimal"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="divisa" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="LISTADOMOVSTJ" type="tns:listadoMovTjType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="literal" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="AVANCETJS">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="cuentaOrigen" type="tns:cuentaOrigenType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="cuentaDestino" type="tns:cuentaDestinoType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="valor" type="xsd:decimal"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="fechaHoraOperacion" type="xsd:dateTime"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="AVANCETJSRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="literal" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:complexType name="filtromovTCType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="unbounded" minOccurs="0" name="FINICIO" type="xsd:date"/>
+         <xsd:element maxOccurs="unbounded" minOccurs="0" name="FFIN" type="xsd:date"/>
+         <xsd:element maxOccurs="unbounded" minOccurs="0" name="VALORMIN" type="xsd:decimal"/>
+         <xsd:element maxOccurs="unbounded" minOccurs="0" name="VALORMAX" type="xsd:decimal"/>
+         <xsd:element maxOccurs="unbounded" minOccurs="0" name="FILTROPAGOS" type="xsd:boolean"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="listadoMovTjType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="unbounded" minOccurs="0" name="EMT" type="tns:emtType"/>
+      </xsd:sequence>
+      <xsd:attribute name="size" type="xsd:string"/>
+   </xsd:complexType>
+   <xsd:complexType name="emtType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="INDICE" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="fechaHoraOperacion" type="xsd:dateTime"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="fechaHoraValor" type="xsd:dateTime"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="comprobante" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="CONCEPTO" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="DESCRIPCION" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="IMPORTE" type="xsd:decimal"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="divisa" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="PLAZOPAGO" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="TRANSFERENCIACUENTASPROPIAS">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="cuentaOrigen" type="tns:epType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="cuentaDestino" type="tns:epType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="valor" type="xsd:decimal"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="fechaHoraOperacion" type="xsd:dateTime"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="TRANSFERENCIACUENTASPROPIASRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="literal" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="CTASPREINSCRITAS">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="operacion" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ctasBBVA" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="FILTRO" type="tns:filtroType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="tipoProducto" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="EPP" type="tns:eppType"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="CTASPREINSCRITASRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ctasBBVA" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="CTASPREINSCRLIST" type="tns:prodInscType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="literal" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:complexType name="filtroType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="0" name="tipoProducto" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="prodInscType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="unbounded" minOccurs="0" name="EPP" type="tns:eppType"/>
+         <xsd:element maxOccurs="unbounded" minOccurs="0" name="ELP" type="tns:elpType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="eppType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="0" name="ID" type="xsd:positiveInteger"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="TITULAR" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="IDTITULAR" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="tipoIdentificacion" type="tns:tipoIdType"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="email" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="sms" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="cuentaDestino" type="tns:cuentaDestinoCtasPreinsType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:simpleType name="phoneNumberType">
+      <xsd:restriction base="xsd:string">
+         <xsd:pattern value="[3][0-9]{9}"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:element name="TRANSFERENCIACUENTASTERCEROS">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="cuentaOrigen" type="tns:epType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="cuentaDestino" type="tns:epType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="valor" type="xsd:decimal"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="concepto" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="fechaHoraOperacion" type="xsd:dateTime"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="emailNotificacion" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="TRANSFERENCIACUENTASTERCEROSRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="literal" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:complexType name="filtroRecType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="0" name="DOM" type="tns:domFiltroRecType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:simpleType name="domFiltroRecType">
+      <xsd:restriction base="xsd:string"/>
+   </xsd:simpleType>
+   <xsd:element name="CONSULTACATEGORIAREC">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="filtroConsulta" type="tns:filtroRecType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="CONSULTACATEGORIARECRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="filtroConsulta" type="tns:filtroRecType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="CATEGORIARECLIST" type="tns:catRecListType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="SUBCATRECLIST" type="tns:subCatRecListType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="literal" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:complexType name="catRecListType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="unbounded" minOccurs="0" name="ECR" type="tns:ecrType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ecrType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="COD" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="DESCR" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="DOM" type="tns:domFiltroRecType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="subCatRecListType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="unbounded" minOccurs="0" name="ESCR" type="tns:escrType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="escrType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="COD" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="CODSUB" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="DESCRSUB" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="DOM" type="tns:domFiltroRecType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="LISTADOREC">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="SELECTSUBCATREC" type="tns:escrType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="filtroConsulta" type="tns:filtroRecType"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="LISTADORECRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="filtroConsulta" type="tns:filtroRecType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="RECLIST" type="tns:recListType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="literal" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:complexType name="recListType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="unbounded" minOccurs="0" name="ELR" type="tns:elrType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="imgType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="0" name="URL" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="EXT" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="elprType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="unbounded" minOccurs="1" name="REFER" type="tns:refrType"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="EXT" type="xsd:string"/>
+      </xsd:sequence>
+      <xsd:attribute name="size" type="xsd:positiveInteger"/>
+   </xsd:complexType>
+   <xsd:complexType name="refrType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="VAL" type="xsd:boolean"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="SHORTDESC" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="DESC" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="ALIN" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="RELL" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="TIPO" type="xsd:string"/>
+      </xsd:sequence>
+      <xsd:attribute name="ID" type="xsd:positiveInteger"/>
+      <xsd:attribute name="size" type="xsd:positiveInteger"/>
+   </xsd:complexType>
+   <xsd:complexType name="elrType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="COD" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="CODSUB" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="CODCONVENIO" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="NOMCONVENIO" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="DESCRCONVENIO" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="CODFORMATO" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="INPUTVALOR">
+            <xsd:simpleType>
+               <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="VARIABLE"/>
+                  <xsd:enumeration value="FIJO"/>
+                  <xsd:enumeration value="SUGERIDO"/>
+                  <xsd:enumeration value="MINIMO"/>
+                  <xsd:enumeration value="MAXIMO"/>
+               </xsd:restriction>
+            </xsd:simpleType>
+         </xsd:element>
+         <xsd:element maxOccurs="1" minOccurs="0" name="PAGOTC" type="xsd:boolean"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="DOM" type="tns:domFiltroRecType"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="IMAG" type="tns:imgType"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="ELPR" type="tns:elprType"/>
+      </xsd:sequence>
+      <xsd:attribute name="ID" type="xsd:positiveInteger"/>
+   </xsd:complexType>
+   <xsd:element name="PAGOFACTURAS">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="operacion" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="cuentaOrigen" type="tns:epType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="recDestino" type="tns:recaudoType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="valor" type="xsd:decimal"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="fechaHoraOperacion" type="xsd:dateTime"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="referencia" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="PAGOFACTURASRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="valor" type="xsd:decimal"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="operacion" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="literal" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="referencia" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="GETLISTGEN">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="codServicio" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="GETLISTGENRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="codServicio" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="GENLIST" type="tns:genlistType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="literal" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="GETINFOCLIENTE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="Operacion" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="EPP" type="tns:eppType"/>
+         </xsd:sequence>
+      </xsd:complexType>
+      <!--<xsd:complexType><xsd:sequence><xsd:element maxOccurs="1" minOccurs="0" 
+			name="datosCanal" type="datosCanalType" /><xsd:element maxOccurs="1" minOccurs="1" 
+			name="clienteRequest" type="clienteType"/><xsd:element maxOccurs="1" minOccurs="1" 
+			name="ticketID" type="xsd:string"/><xsd:element maxOccurs="1" minOccurs="1" 
+			name="operacion" type="xsd:string"/><xsd:element maxOccurs="1" minOccurs="1" 
+			name="EPP" type="eppType"/></xsd:sequence></xsd:complexType>-->
+   </xsd:element>
+   <xsd:element name="GETINFOCLIENTERESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="operacion" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="EPP" type="tns:eppType"/>
+         </xsd:sequence>
+      </xsd:complexType>
+      <!--<xsd:complexType><xsd:sequence><xsd:element maxOccurs="1" minOccurs="1" 
+			name="ticketID" type="xsd:string"/><xsd:element maxOccurs="1" minOccurs="1" 
+			name="statusResponse" type="statusType"/><xsd:element maxOccurs="1" minOccurs="1" 
+			name="operacion" type="xsd:string"/><xsd:element maxOccurs="1" minOccurs="1" 
+			name="EPP" type="eppType"/></xsd:sequence></xsd:complexType>-->
+   </xsd:element>
+   <xsd:complexType name="datosCanalType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="canal" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="subcanal" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="PAGATIEMPO">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="operacion" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="inscrData" type="tns:inscrDataPTType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="emailNotif" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="PAGATIEMPORESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="operacion" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="valor" type="xsd:decimal"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="consultPPData" type="tns:consDataPTType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="literal" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:complexType name="consDataPTType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="unbounded" minOccurs="0" name="ERLFPT" type="tns:erlfptType"/>
+      </xsd:sequence>
+      <xsd:attribute name="size" type="xsd:string"/>
+   </xsd:complexType>
+   <xsd:complexType name="inscrDataPTType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="unbounded" minOccurs="1" name="ERLPT" type="tns:recaudoPagaTiempoType"/>
+      </xsd:sequence>
+      <xsd:attribute name="size" type="xsd:positiveInteger"/>
+   </xsd:complexType>
+   <xsd:complexType name="erlfptType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="NOMCONVENIO" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="CIUDAD" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="DESCRCONVENIO" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="CODCONVENIO" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="ERFPT" type="tns:erfptType"/>
+      </xsd:sequence>
+      <xsd:attribute name="ID" type="xsd:positiveInteger"/>
+   </xsd:complexType>
+   <xsd:complexType name="erfptType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="unbounded" minOccurs="0" name="ERLPT" type="tns:recaudoType"/>
+      </xsd:sequence>
+      <xsd:attribute name="size" type="xsd:positiveInteger"/>
+   </xsd:complexType>
+   <xsd:complexType name="recaudoType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="CODCONVENIO" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="CODFORMATO" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="ELRR" type="tns:elrrType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <!--tipo usado para pagatiempo-->
+   <xsd:complexType name="recaudoPagaTiempoType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="0" name="NOMCONVENIO" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="CIUDAD" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="DESCRCONVENIO" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="CODCONVENIO" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="Descripcion" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="CODFORMATO" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="ELRR" type="tns:elrrType"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="prodDest" type="tns:productoType"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="periodoUsoPT" type="tns:periodoUsoType"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="estadoPT" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="valorMaxPago" type="xsd:decimal"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="valorProxPago" type="xsd:decimal"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="CInscPT" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="emailNotif" type="xsd:string"/>
+      </xsd:sequence>
+      <xsd:attribute name="ID" type="xsd:string"/>
+   </xsd:complexType>
+   <xsd:complexType name="periodoUsoType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="0" name="fechaInicio" type="xsd:date"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="fechaFin" type="xsd:date"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="fechavenc" type="xsd:date"/>
+      </xsd:sequence>
+      <xsd:attribute name="diasAntesVenc" type="xsd:positiveInteger"/>
+   </xsd:complexType>
+   <xsd:complexType name="elrrType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="unbounded" minOccurs="1" name="REFER" type="tns:erfrType"/>
+      </xsd:sequence>
+      <xsd:attribute name="size" type="xsd:positiveInteger"/>
+   </xsd:complexType>
+   <xsd:complexType name="erfrType">
+      <xsd:simpleContent>
+         <xsd:extension base="xsd:string">
+            <xsd:attribute name="id" type="xsd:positiveInteger"/>
+         </xsd:extension>
+      </xsd:simpleContent>
+   </xsd:complexType>
+   <xsd:element name="PAGOPRODUCTOS">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="operacion" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ProdOrigen" type="tns:ProdOrigenType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ProdDestino" type="tns:proddestinoType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosAdicionales" type="tns:datosAdicType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="valor" type="xsd:decimal"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="EMT" type="tns:emtType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="emailNotif" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="tipoPago" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="fechaHoraOperacion" type="xsd:dateTime"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:complexType name="ProdOrigenType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="ELC" type="tns:elcType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="PAGOPRODUCTOSRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="literal" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="mensajeRespuesta" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="msjUsuario" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="fechaHoraOperacion" type="xsd:dateTime"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="authorizationId" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="operacion" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="IP" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:complexType name="iptype">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="IP1" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="IP2" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="IP3" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="IP4" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="datosAdicType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="0" name="intcorr" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="intmora" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="gastosSeguros" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="proddestinoType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="0" name="EPP" type="tns:eppType"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="ELP" type="tns:elpType"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="ELT" type="tns:eltType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="PERSCANALES">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="clienteRequest" type="tns:clienteType"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="OPERACION" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="LISTPERSCANALES" type="tns:listPersCanalestype"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="PERSCANALESRESPONSE">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="OPERACION" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="LISTPERSCANALES" type="tns:listPersCanalestype"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="listPersCanalestype">
+      <xsd:sequence>
+         <xsd:element maxOccurs="unbounded" minOccurs="1" name="CANAL" type="tns:canaltype"/>
+      </xsd:sequence>
+      <xsd:attribute name="size" type="xsd:positiveInteger"/>
+   </xsd:complexType>
+   <xsd:complexType name="canaltype">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="0" name="NAME" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="DESCR" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="PARMLIST" type="tns:parmListType"/>
+      </xsd:sequence>
+      <xsd:attribute name="ID" type="xsd:positiveInteger"/>
+      <xsd:attribute name="idBBVACanal" type="xsd:string"/>
+      <xsd:attribute name="active" type="xsd:boolean"/>
+      <xsd:attribute name="pers" type="xsd:boolean"/>
+   </xsd:complexType>
+   <xsd:complexType name="parmType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="0" name="PARMNAME" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="PARMDESCR" type="xsd:string"/>
+         <xsd:element maxOccurs="unbounded" minOccurs="0" name="PARMITEMS" type="tns:parmItemsType"/>
+      </xsd:sequence>
+      <xsd:attribute name="ID" type="xsd:positiveInteger"/>
+      <xsd:attribute name="type" type="xsd:string"/>
+   </xsd:complexType>
+   <xsd:complexType name="parmItemsType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="unbounded" minOccurs="0" name="ITEM" type="tns:itemType"/>
+         <xsd:element maxOccurs="unbounded" minOccurs="0" name="ITEM2" type="tns:ITEM2Type"/>
+      </xsd:sequence>
+      <xsd:attribute name="size" type="xsd:positiveInteger"/>
+   </xsd:complexType>
+   <xsd:complexType name="ITEM2Type">
+      <xsd:simpleContent>
+         <xsd:extension base="xsd:string">
+            <xsd:attribute name="ID" type="xsd:string"/>
+            <xsd:attribute name="onState" type="xsd:string"/>
+            <xsd:attribute name="inputSz" type="xsd:string"/>
+            <xsd:attribute name="onoffSz" type="xsd:string"/>
+            <xsd:attribute name="dualSz" type="xsd:string"/>
+         </xsd:extension>
+      </xsd:simpleContent>
+   </xsd:complexType>
+   <xsd:complexType name="itemType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="unbounded" minOccurs="0" name="SITEM" type="tns:sItemType"/>
+      </xsd:sequence>
+      <xsd:attribute name="ID" type="xsd:positiveInteger"/>
+      <xsd:attribute name="onState" type="xsd:boolean"/>
+      <xsd:attribute name="inputSz" type="xsd:positiveInteger"/>
+      <xsd:attribute name="onoffSz" type="xsd:positiveInteger"/>
+      <xsd:attribute name="dualSz" type="xsd:positiveInteger"/>
+      <xsd:attribute name="otherSz" type="xsd:positiveInteger"/>
+   </xsd:complexType>
+   <xsd:complexType mixed="true" name="sItemType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="0" name="SITEMDEFVAL" type="tns:sItemValType"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="SITEMSELVAL" type="tns:sItemValType"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="SITEMSELVAL1" type="xsd:string"/>
+         <xsd:element maxOccurs="unbounded" minOccurs="0" name="SITEMVAL" type="tns:sItemValType"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="SITEMDESCR" type="xsd:string"/>
+      </xsd:sequence>
+      <xsd:attribute name="ID" type="xsd:positiveInteger"/>
+      <xsd:attribute name="type" type="xsd:string"/>
+      <xsd:attribute name="onState" type="xsd:boolean"/>
+   </xsd:complexType>
+   <xsd:complexType mixed="true" name="sItemValType">
+      <xsd:choice maxOccurs="1" minOccurs="0">
+         <xsd:element maxOccurs="1" minOccurs="0" name="ELC" type="tns:elcType"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="ELT" type="tns:eltType"/>
+      </xsd:choice>
+   </xsd:complexType>
+   <xsd:complexType name="parmListType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="unbounded" minOccurs="0" name="PARM" type="tns:parmType"/>
+      </xsd:sequence>
+      <xsd:attribute name="inputSz" type="xsd:positiveInteger"/>
+      <xsd:attribute name="onoffSz" type="xsd:positiveInteger"/>
+      <xsd:attribute name="dualSz" type="xsd:positiveInteger"/>
+      <xsd:attribute name="otherSz" type="xsd:positiveInteger"/>
+   </xsd:complexType>
+   <xsd:complexType name="menuItemType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="0" name="NAME" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="DESCR" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="PARMLIST" type="tns:parmListType"/>
+      </xsd:sequence>
+      <xsd:attribute name="ID" type="xsd:positiveInteger"/>
+      <xsd:attribute name="idBBVAProd" type="xsd:string"/>
+   </xsd:complexType>
+   <xsd:complexType name="listMenuProdType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="unbounded" minOccurs="0" name="MENUITEM" type="tns:menuItemType"/>
+      </xsd:sequence>
+      <xsd:attribute name="size" type="xsd:positiveInteger"/>
+      <xsd:attribute name="idBBVAProd" type="xsd:string"/>
+   </xsd:complexType>
+   <xsd:complexType name="blqProdType">
+      <xsd:attribute name="idBBVAProd" type="xsd:string"/>
+   </xsd:complexType>
+   <xsd:complexType name="BLQPROD">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="clienteRequest" type="tns:clienteType"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="OPERACION" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="PROD" type="tns:blqProdType"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="DATBLQPROD" type="tns:listMenuProdType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="BLQPRODRESPONSE">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:clienteType"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="operacion" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="PROD" type="tns:blqProdType"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="LISTPROD" type="tns:listMenuProdType"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="LISTMENUPROD" type="tns:listMenuProdType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="ALIASPRODUCTOS">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="PRODUCTO" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ALIAS" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="ALIASPRODUCTOSRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="literal" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="FAVORITOSPRODUCTOS">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="PRODUCTO" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="FAV" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="FAVORITOSPRODUCTOSRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="literal" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:complexType name="elpType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="0" name="INDICE" type="xsd:positiveInteger"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="PRESTAMO" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="TIPOPRESTAMO" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="DESCRIPCION" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="saldoAdeudado" type="xsd:decimal"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="divisa" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="ALIAS" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="FAV" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="fechaHoraLimitePago" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="cuota" type="tns:cuotaType2"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="proximaCuota" type="tns:cuotaType2"/>
+         <!--<xsd:element maxOccurs="1" minOccurs="0" name="fechaHoraLimitePago" 
+				type="xsd:string"/>-->
+         <xsd:element maxOccurs="1" minOccurs="0" name="pagoMinimo" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="capital" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="interescorriente" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="interesmora" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="gastosyseguros" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="valorcobertura" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="numeroCvencidas" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="cuotaType2">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="0" name="fechaHoraLimitePago" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="pagoMinimo" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="capital" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="interescorriente" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="interesmora" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="gastosyseguros" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="valorcobertura" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="numeroCvencidas" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="LISTADOPREST">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="opcion" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="LISTADOPRESTRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="ELP" type="tns:elpType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="literal" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:complexType name="eldType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="INDICE" type="xsd:positiveInteger"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="CDT" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="TIPOCDT" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="DESCRIPCION" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="saldoTotal" type="xsd:decimal"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="divisa" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="ALIAS" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="FAV" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="fechaHoraVencimiento" type="xsd:dateTime"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="valorContratado" type="xsd:decimal"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="LISTADOCDTS">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="LISTADOCDTSRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="ELD" type="tns:eldType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="literal" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="GETCOMISION">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="codOperacion" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="CONTRATOS" type="tns:contratoType"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="GETCOMISIONRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="CONTRATOS" type="tns:contratoType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="literal" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="TRANSFERENCIACUPOSROTATIVOS">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="operacion" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="productoOrigen" type="tns:productoCRType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="productoDestino" type="tns:productoCRType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="tipoPago" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="monto" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="descripcion" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="fechaHoraOperacion" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:complexType name="productoCRType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="tipoProducto" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="numeroProducto" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="TRANSFERENCIACUPOSROTATIVOSRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="statusResponse" type="tns:statusType"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="CONSULTACUPOSROTATIVOS">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="operacion" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="indicadorPaginacion" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="CONSULTACUPOSROTATIVOSRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="CRT" type="tns:crtType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="literal" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="indicadorPaginacion" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:complexType name="crtType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="INDICE" type="xsd:positiveInteger"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="cupoDisponible" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="utilizado" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="numTarjeta" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="fechaHoraLimitePago" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="pagoMinimo" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="fechaCorte" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="estadoCupo" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="ctaAsociada" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="TipoctaAsociada" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="codCtaAsociada" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="elgType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="unbounded" minOccurs="0" name="data" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="genlistType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="unbounded" minOccurs="0" name="ELG" type="tns:elgType"/>
+      </xsd:sequence>
+      <xsd:attribute name="size" type="xsd:positiveInteger"/>
+      <xsd:attribute name="dataLength" type="xsd:positiveInteger"/>
+   </xsd:complexType>
+   <xsd:element name="BLQPROD">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="operacion" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="PROD" type="tns:blqProdType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="DATBLQPROD" type="tns:listMenuProdType"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="BLQPRODRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="operacion" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="PROD" type="tns:blqProdType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="LISTPROD" type="tns:listMenuProdType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="LISTMENUPROD" type="tns:listMenuProdType"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="PERSCANALES">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="operacion" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="LISTPERSCANALES" type="tns:listPersCanalestype"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="PERSCANALESRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="operacion" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="LISTPERSCANALES" type="tns:listPersCanalestype"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <!--Inicio GP11257-->
+   <xsd:element name="MOVIMIENTOSFONDOS">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="NUMEROCUENTA" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="FILTROFECHAINICIO" type="xsd:date"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="FILTROFECHAFIN" type="xsd:date"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="FILTROINGRESOS" type="xsd:boolean"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="FILTROPAGOS" type="xsd:boolean"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="MOVIMIENTOSFONDOSRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="NUMEROCUENTA" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ALIAS" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="FAV" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="saldoDisponible" type="xsd:decimal"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="divisa" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="LISTADOMOVSCTA" type="tns:listadoMovCtaType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="literal" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="TRASPASOSFONDOS">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="cuentaOrigen" type="tns:epType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="cuentaDestino" type="tns:epType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="valor" type="xsd:decimal"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="fechaHoraOperacion" type="xsd:dateTime"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="TRASPASOSFONDOSRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="literal" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="RETIROFONDOS">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="cuentaOrigen" type="tns:epType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="cuentaDestino" type="tns:epType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="valor" type="xsd:decimal"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="fechaHoraOperacion" type="xsd:dateTime"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="RETIROFONDOSRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="literal" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="APORTESFONDOS">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="cuentaOrigen" type="tns:epType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="cuentaDestino" type="tns:epType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="valor" type="xsd:decimal"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="fechaHoraOperacion" type="xsd:dateTime"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="APORTESFONDOSRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="literal" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <!--Fin GP11257-->
+   <!--Inicio canales transaccionales GP10031-->
+   <xsd:element name="AGENDAMIENTO">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="fechaPrestacionOferta" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="opcionAcesor" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="fechaDigitada" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="horaInicio" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="horaFin" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="telefono" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="opcion" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="ALIANZASPROMOCIONES">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="fechaPrestacionOferta" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="opcionAcesor" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="fechaDigitada" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="horaInicio" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="horaFin" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="telefono" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="opcion" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="CONFIRMACIONPREAPROBADOS">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="fechaPrestacionOferta" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="opcionAcesor" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="fechaDigitada" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="horaInicio" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="horaFin" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="telefono" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="opcion" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="AGENDAMIENTORESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="mensaje" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="ALIANZASPROMOCIONESRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="texto1" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="texto2" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="CONFIRMACIONPREAPROBADOSRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="texto1" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="texto2" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="CONSULTAPREAPROBADOS">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="fechaPrestacionOferta" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="opcionAcesor" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="fechaDigitada" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="horaInicio" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="horaFin" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="telefono" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="opcion" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="CONSULTAPREAPROBADOSRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="nombre" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="fechaVigencia" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <!--Fin Canales transaccionales GP10031-->
+   <!--GP11231 Novatec Solutions INICIO-->
+   <xsd:element name="DISTRIBUCIONCUPOTCS">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="opcion" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="tarjetaOrigen" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="tarjetaDestino" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="valor" type="xsd:decimal"/>
+            <xsd:element name="clienteRequest" type="tns:clienteRequestCortoType" maxOccurs="1" minOccurs="1"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="DISTRIBUCIONCUPOTCSRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="retorno" type="tns:RetornoType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="salida" type="tns:DCTP_salidaType"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="CONSULTATCSAMPARADAS">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="ticketID" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+            <xsd:element name="numeroTarjeta" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+            <xsd:element name="clienteRequest" type="tns:clienteRequestCortoType" maxOccurs="1" minOccurs="1"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="CONSULTATCSAMPARADASRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="ticketID" type="xsd:string"/>
+            <xsd:element name="retorno" type="tns:RetornoType"/>
+            <xsd:element name="listaTarjetas" type="tns:CTA_ListaTarjetasType"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="ASIGNACIONCUPOTCAMPARADA">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="opcion" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="tarjetaTitular" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="tarjetaAmparada" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="valor" type="xsd:decimal"/>
+            <xsd:element name="clienteRequest" type="tns:clienteRequestCortoType" maxOccurs="1" minOccurs="1"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="ASIGNACIONCUPOTCAMPARADARESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="retorno" type="tns:RetornoType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="salida" type="tns:salidaAsignacionCupoTCAmpType"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:complexType name="RetornoType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="codRetorno" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="rutina" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="tabla" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="codError" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="valorError1" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="valorError2" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="CTA_ListaTarjetasType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="unbounded" minOccurs="0" name="tarjeta" type="tns:CTA_TarjetaType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="CTA_TarjetaType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="numeroContrato" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="numeroTarjeta" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="claseInterviniente" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="DCTP_salidaType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="tarjetaOrigen" type="tns:DCTP_cuposTarjetaType"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="tarjetaDestino" type="tns:DCTP_cuposTarjetaType"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="numeroConfirmacion" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="DCTP_cuposTarjetaType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="cupoTotal" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="cupoDisponible" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="nuevoCupo" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="nuevoCupoDisponible" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="salidaAsignacionCupoTCAmpType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="tarjetaAmparada" type="tns:tarjetaAmparadaType"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="numeroConfirmacion" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="tarjetaAmparadaType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="1" name="cupoTotalTCAmparada" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="1" name="nuevoCupoTCAmparada" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="clienteRequestCortoType">
+      <xsd:sequence>
+         <xsd:element name="tipoIdentificacion" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+         <xsd:element name="numeroIdentificacion" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <!--GP11231 Novatec Solutions FIN-->
+   <!--PREAPROBADOS F2 GP13541 Inicio-->
+   <xsd:element name="LISTADOCUENTASPREAPROBADOS">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="indicadorPaginacion" type="xsd:string"/>
+            <!--GP14625 INICIO Banca Digital Pagatiempo 2.0-->
+            <xsd:element maxOccurs="1" minOccurs="0" name="indOperacion" type="xsd:string"/>
+            <!--GP14625 FIN Banca Digital Pagatiempo 2.0-->
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="LISTADOCUENTASPREAPROBADOSRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="Cuenta" type="tns:cuentaPreType"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:complexType name="cuentaPreType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="0" name="tipoCuenta" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="numCuenta" type="xsd:string"/>
+         <!--GP14625 INICIO Banca Digital Pagatiempo 2.0-->
+         <xsd:element maxOccurs="1" minOccurs="0" name="saldoDisponible" type="xsd:string"/>
+         <!--GP14625 FIN Banca Digital Pagatiempo 2.0-->
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="LISTADOPREAPROBADOS">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="indicadorPaginacion" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="LISTADOPREAPROBADOSRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="fechaVigencia" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="email" type="xsd:string"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="datosPreaprobado" type="tns:preProdType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="DatosTarjetas" type="tns:preProdType1"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:complexType name="preProdType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="0" name="tipoProducto" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="producto" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="franquicia" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="monto" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="estado" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="montoMinimo" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="montoMaximo" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="plazo" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="disposicion" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="tipoProd" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="codigoProducto" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="preProdType1">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="0" name="tipoProducto" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="producto" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="franquicia" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="monto" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="estado" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="disposicion" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="tipoTarjeta" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="plazo" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="descripcion" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="montoMinimo" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="montoMaximo" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="codigoBin" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="ACTIVACIONPREAPROBADOS">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="producto" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="plazo" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="monto" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="numeroCuenta" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="franquicia" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="descripcionOperacion" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="correo" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="bin" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="ACTIVACIONPREAPROBADOSRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="cuenta" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="producto" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="monto" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="celular" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="email" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="fechaAceptacion" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="horaAceptacion" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="cuota" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="tasa" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="plazo" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="cuotaTotal" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="valorSeguro" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="SIMULACIONPREAPROBADOS">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="producto" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="plazo" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="monto" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="SIMULACIONPREAPROBADOSRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="cuota" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="tasa" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="plazo" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="monto" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="cuotaTotal" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="Seguro" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <!--PREAPROBADOS F2 GP13541 Fin-->
+   <!--GP14583 Banca Digital CDTOnline INICIO-->
+   <!--Alta-->
+   <xsd:element name="ALTACDTONLINE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="tipoCDT" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="plazo" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="cantidadPlazo" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="cuentaADebitar" type="tns:epType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="importe" type="xsd:decimal"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="periodicidadInteres" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="cuentaAbonoCapital" type="tns:epType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="tipoTasa" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="ALTACDTONLINERESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="nombre" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="tasa" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="valorCapital" type="xsd:string"/>
+            <!--ABOCAP-->
+            <xsd:element maxOccurs="1" minOccurs="0" name="fechaVencimiento" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="numeroOficina" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="idCDT" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="rentabilidadBruta" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="retefuente" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="rendimientoNeto" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="modalidadInteres" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <!--Modificacion-->
+   <xsd:element name="MODIFICACIONCDTONLINE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="idCDT" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="estado" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="tipoProrroga" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="nvActa" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="canal" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="subcanal" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="MODIFICACIONCDTONLINERESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="salidaCDT" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <!--Consulta Tasa-->
+   <xsd:element name="CONSULTATASACDTONLINE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="opcionTipoProducto" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="CONSULTATASACDTONLINERESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="tasaCDT" type="tns:tipoTasa"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="plazoCDT" type="tns:tipoPlazo"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:complexType name="tipoTasa">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="0" name="subProducto" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="descripcion" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="valorMinimo" type="xsd:decimal"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="valorMaximo" type="xsd:decimal"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="tipoPlazo">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="0" name="tasa" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="plazo" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="periodicidad" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <!--GP14583 Banca Digital CDTOnline FIN-->
+   <!--GP13273 CMC-->
+   <xsd:element name="LISTADOBANCOS">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="opcion" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="LISTADOBANCOSRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="Banco" type="tns:listBankType"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:complexType name="listBankType">
+      <xsd:sequence>
+         <xsd:element maxOccurs="1" minOccurs="0" name="codBancoExterno" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="descBancoExterno" type="xsd:string"/>
+         <xsd:element maxOccurs="1" minOccurs="0" name="depositoElectr" type="xsd:string"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="LISTADOPRODOMICILIADOS">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="opcion" type="xsd:string"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="LISTADOPRODOMICILIADOSRESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="producto" type="tns:productoDomType"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+
+	<xsd:complexType name="productoDomType">
+		<xsd:sequence>
+			<xsd:element maxOccurs="1" minOccurs="0" name="numProducto"
+				type="xsd:string" />
+			<xsd:element maxOccurs="1" minOccurs="0" name="codBancoExterno"
+				type="xsd:string" />
+			<xsd:element maxOccurs="1" minOccurs="0" name="tipoCuentaExterna"
+				type="xsd:string" />
+			<xsd:element maxOccurs="1" minOccurs="0" name="numCuentaExterna"
+				type="xsd:string" />
+			<xsd:element maxOccurs="1" minOccurs="0" name="numReintento"
+				type="xsd:string" />
+			<xsd:element maxOccurs="1" minOccurs="0"
+				name="estadoDomiciliacion" type="xsd:string" />
+			<xsd:element maxOccurs="1" minOccurs="0" name="fecha"
+				type="xsd:string" />
+			<xsd:element maxOccurs="1" minOccurs="0" name="valor"
+				type="xsd:string" />
+			<xsd:element maxOccurs="1" minOccurs="0" name="banco"
+				type="xsd:string" />
+			<xsd:element maxOccurs="1" minOccurs="0" name="descPago"
+				type="xsd:string" />
+			<xsd:element maxOccurs="1" minOccurs="0" name="saldoAdeudado"
+				type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+   <xsd:element name="OPERACIONESPAGATIEMPO">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="datosCanal" type="tns:datosCanalType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="clienteRequest" type="tns:clienteType"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="opcion" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="numProducto" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="codBancoExterno" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="tipoCuentaExterna" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="numCuentaExterna" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="numReintento" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="estadoDomiciliacion" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="fecha" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="valor" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="banco" type="xsd:string" />
+            <xsd:element maxOccurs="1" minOccurs="0" name="descPago" type="xsd:string" />
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="OPERACIONESPAGATIEMPORESPONSE">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ticketID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="statusResponse" type="tns:statusType"/>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+   <!--GP13273 CMC-->
+</xsd:schema>

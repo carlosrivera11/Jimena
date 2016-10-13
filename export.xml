@@ -1,0 +1,409 @@
+<datapower-configuration version="3"><export-details><description>Exported Configuration</description><user>c343565</user><domain>QA-DOM-INTRASOA</domain><comment/><product-id>242643X</product-id><product>XI50</product><display-product>XI52</display-product><model>DataPower XI50</model><display-model>DataPower XI52</display-model><device-name>Datapower QA / DE</device-name><serial-number>7830717</serial-number><firmware-version>XI50.7.1.0.10yl</firmware-version><display-firmware-version>XI52.7.1.0.10yl</display-firmware-version><firmware-build>279241yl</firmware-build><firmware-timestamp>2016/08/01 09:46:22</firmware-timestamp><current-date>2016-10-05</current-date><current-time>11:56:37 DST</current-time><reset-date>2016-08-02</reset-date><reset-time>09:49:09 DST</reset-time><login-message/><custom-ui-file/><intrusion-detection>disable</intrusion-detection></export-details><interface-data><interface name="mgt0" type="Ethernet" vers="ipv4" ip-addr="82.255.54.61"/><interface name="eth10" type="Ethernet" vers="ipv4" ip-addr="172.17.93.51"/><interface name="eth11" type="Ethernet" vers="ipv4" ip-addr="172.17.93.53"/></interface-data><configuration domain="QA-DOM-INTRASOA"><HTTPUserAgent name="default" intrinsic="true" xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/schemas/management">
+<mAdminState>enabled</mAdminState>
+<UserSummary>Default User Agent</UserSummary>
+<MaxRedirects>8</MaxRedirects>
+<Timeout>300</Timeout></HTTPUserAgent><XMLManager name="default" intrinsic="true" xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/schemas/management">
+<mAdminState>enabled</mAdminState>
+<UserSummary>Default XML-Manager</UserSummary>
+<CacheSize>256</CacheSize>
+<SHA1Caching>on</SHA1Caching>
+<StaticDocumentCalls>on</StaticDocumentCalls>
+<SearchResults>on</SearchResults>
+<SupportTxWarn>off</SupportTxWarn>
+<Memoization>on</Memoization>
+<ParserLimitsBytesScanned>4194304</ParserLimitsBytesScanned>
+<ParserLimitsElementDepth>512</ParserLimitsElementDepth>
+<ParserLimitsAttributeCount>128</ParserLimitsAttributeCount>
+<ParserLimitsMaxNodeSize>33554432</ParserLimitsMaxNodeSize>
+<ParserLimitsForbidExternalReferences>on</ParserLimitsForbidExternalReferences>
+<ParserLimitsExternalReferences>forbid</ParserLimitsExternalReferences>
+<ParserLimitsMaxPrefixes>1024</ParserLimitsMaxPrefixes>
+<ParserLimitsMaxNamespaces>1024</ParserLimitsMaxNamespaces>
+<ParserLimitsMaxLocalNames>60000</ParserLimitsMaxLocalNames>
+<DocCacheMaxDocs>5000</DocCacheMaxDocs>
+<DocCacheSize>0</DocCacheSize>
+<UserAgent class="HTTPUserAgent">default</UserAgent></XMLManager><HTTPSourceProtocolHandler name="BancaMovilHTTPFSH" xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/schemas/management">
+<mAdminState>enabled</mAdminState>
+<LocalAddress>0.0.0.0</LocalAddress>
+<LocalPort>7002</LocalPort>
+<HTTPVersion>HTTP/1.1</HTTPVersion>
+<AllowedFeatures>
+<HTTP-1.0>on</HTTP-1.0>
+<HTTP-1.1>on</HTTP-1.1>
+<POST>on</POST>
+<GET>on</GET>
+<PUT>on</PUT>
+<HEAD>off</HEAD>
+<OPTIONS>off</OPTIONS>
+<TRACE>off</TRACE>
+<DELETE>off</DELETE>
+<CONNECT>off</CONNECT>
+<CustomMethods>off</CustomMethods>
+<QueryString>on</QueryString>
+<FragmentIdentifiers>on</FragmentIdentifiers>
+<DotDot>off</DotDot>
+<CmdExe>off</CmdExe></AllowedFeatures>
+<PersistentConnections>on</PersistentConnections>
+<MaxPersistentConnectionsReuse>0</MaxPersistentConnectionsReuse>
+<AllowCompression>off</AllowCompression>
+<AllowWebSocketUpgrade>off</AllowWebSocketUpgrade>
+<WebSocketIdleTimeout>0</WebSocketIdleTimeout>
+<MaxURLLen>16384</MaxURLLen>
+<MaxTotalHdrLen>128000</MaxTotalHdrLen>
+<MaxHdrCount>0</MaxHdrCount>
+<MaxNameHdrLen>0</MaxNameHdrLen>
+<MaxValueHdrLen>0</MaxValueHdrLen>
+<MaxQueryStringLen>0</MaxQueryStringLen>
+<CredentialCharset>protocol</CredentialCharset></HTTPSourceProtocolHandler><WSEndpointRewritePolicy name="WSBancaMovilService" xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/schemas/management">
+<mAdminState>enabled</mAdminState>
+<WSEndpointLocalRewriteRule>
+<ServicePortMatchRegexp>^{http://www.bbvanet.com.co/BancaMovilTX/}BancaMovilTXSOAP$</ServicePortMatchRegexp>
+<LocalEndpointProtocol>default</LocalEndpointProtocol>
+<LocalEndpointHostname>0.0.0.0</LocalEndpointHostname>
+<LocalEndpointPort>0</LocalEndpointPort>
+<LocalEndpointURI>/proyectos/BancaMovilService2</LocalEndpointURI>
+<FrontProtocol class="HTTPSourceProtocolHandler">BancaMovilHTTPFSH</FrontProtocol>
+<UseFrontProtocol>on</UseFrontProtocol>
+<WSDLBindingProtocol>soap-11</WSDLBindingProtocol>
+<FrontsidePortSuffix/></WSEndpointLocalRewriteRule>
+<WSEndpointRemoteRewriteRule>
+<ServicePortMatchRegexp>^{http://www.bbvanet.com.co/BancaMovilTX/}BancaMovilTXSOAP$</ServicePortMatchRegexp>
+<RemoteEndpointProtocol>http</RemoteEndpointProtocol>
+<RemoteEndpointHostname>127.0.0.1</RemoteEndpointHostname>
+<RemoteEndpointPort>7032</RemoteEndpointPort>
+<RemoteEndpointURI>/proyectos/BancaMovilService2</RemoteEndpointURI>
+<RemoteMQQM/>
+<RemoteTibcoEMS/>
+<RemoteWebSphereJMS/></WSEndpointRemoteRewriteRule></WSEndpointRewritePolicy><Matching name="WSBancamovilService_match_by_recaudo" xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/schemas/management">
+<mAdminState>enabled</mAdminState>
+<MatchRules>
+<Type>xpath</Type>
+<HttpTag/>
+<HttpValue/>
+<Url/>
+<ErrorCode/>
+<XPATHExpression>/*[namespace-uri()='http://schemas.xmlsoap.org/soap/envelope/' and local-name()='Envelope']/*[namespace-uri()='http://schemas.xmlsoap.org/soap/envelope/' and local-name()='Body']/*[namespace-uri()='http://www.bbvanet.com.co/BancaMovilTX/' and local-name()='CONSULTACATEGORIAREC'] or   		 /*[namespace-uri()='http://schemas.xmlsoap.org/soap/envelope/' and local-name()='Envelope']/*[namespace-uri()='http://schemas.xmlsoap.org/soap/envelope/' and local-name()='Body']/*[namespace-uri()='http://www.bbvanet.com.co/BancaMovilTX/' and local-name()='LISTADOREC']</XPATHExpression>
+<Method>default</Method>
+<CustomMethod/></MatchRules>
+<MatchWithPCRE>off</MatchWithPCRE>
+<CombineWithOr>off</CombineWithOr></Matching><StylePolicyAction name="WSBancaMovilService_recaudos_req_xform_1" xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/schemas/management">
+<mAdminState>enabled</mAdminState>
+<Type>xform</Type>
+<Input>INPUT</Input>
+<Transform>local:///proyectos/BancaMovil/Recaudos/routing_by_recaudos.xsl</Transform>
+<ActionDebug persisted="false">off</ActionDebug>
+<Output>PIPE</Output>
+<NamedInOutLocationType>default</NamedInOutLocationType>
+<OutputType>default</OutputType>
+<Transactional>off</Transactional>
+<SOAPValidation>body</SOAPValidation>
+<SQLSourceType>static</SQLSourceType>
+<Asynchronous>off</Asynchronous>
+<ResultsMode>first-available</ResultsMode>
+<RetryCount>0</RetryCount>
+<RetryInterval>1000</RetryInterval>
+<MultipleOutputs>off</MultipleOutputs>
+<IteratorType>XPATH</IteratorType>
+<Timeout>0</Timeout>
+<MethodRewriteType>GET</MethodRewriteType>
+<MethodType>POST</MethodType>
+<MethodType2>POST</MethodType2></StylePolicyAction><StylePolicyAction name="WSBancaMovilService_recaudos_req_results_output_0" xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/schemas/management">
+<mAdminState>enabled</mAdminState>
+<Type>results</Type>
+<Input>PIPE</Input>
+<ActionDebug persisted="false">off</ActionDebug>
+<NamedInOutLocationType>default</NamedInOutLocationType>
+<OutputType>default</OutputType>
+<Transactional>off</Transactional>
+<SOAPValidation>body</SOAPValidation>
+<SQLSourceType>static</SQLSourceType>
+<Asynchronous>off</Asynchronous>
+<ResultsMode>first-available</ResultsMode>
+<RetryCount>0</RetryCount>
+<RetryInterval>1000</RetryInterval>
+<MultipleOutputs>off</MultipleOutputs>
+<IteratorType>XPATH</IteratorType>
+<Timeout>0</Timeout>
+<MethodRewriteType>GET</MethodRewriteType>
+<MethodType>POST</MethodType>
+<MethodType2>POST</MethodType2></StylePolicyAction><WSStylePolicyRule name="WSBancaMovilService_recaudos_req" xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/schemas/management">
+<mAdminState>enabled</mAdminState>
+<Direction>request-rule</Direction>
+<InputFormat>none</InputFormat>
+<OutputFormat>none</OutputFormat>
+<NonXMLProcessing>off</NonXMLProcessing>
+<Unprocessed>off</Unprocessed>
+<Actions class="StylePolicyAction">WSBancaMovilService_recaudos_req_xform_1</Actions>
+<Actions class="StylePolicyAction">WSBancaMovilService_recaudos_req_results_output_0</Actions></WSStylePolicyRule><Matching name="WSBancaMovilService_match_all" xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/schemas/management">
+<mAdminState>enabled</mAdminState>
+<MatchRules>
+<Type>url</Type>
+<HttpTag/>
+<HttpValue/>
+<Url>*</Url>
+<ErrorCode/>
+<XPATHExpression/>
+<Method>default</Method>
+<CustomMethod/></MatchRules>
+<MatchWithPCRE>off</MatchWithPCRE>
+<CombineWithOr>off</CombineWithOr></Matching><StylePolicyAction name="WSBancaMovilService_default_request-rule_xform_0" xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/schemas/management">
+<mAdminState>enabled</mAdminState>
+<Type>xform</Type>
+<Input>INPUT</Input>
+<Transform>local:///proyectos/BancaMovil/Recaudos/routing_by_other.xsl</Transform>
+<ActionDebug persisted="false">off</ActionDebug>
+<Output>dpvar_1</Output>
+<NamedInOutLocationType>default</NamedInOutLocationType>
+<OutputType>default</OutputType>
+<Transactional>off</Transactional>
+<SOAPValidation>body</SOAPValidation>
+<SQLSourceType>static</SQLSourceType>
+<Asynchronous>off</Asynchronous>
+<ResultsMode>first-available</ResultsMode>
+<RetryCount>0</RetryCount>
+<RetryInterval>1000</RetryInterval>
+<MultipleOutputs>off</MultipleOutputs>
+<IteratorType>XPATH</IteratorType>
+<Timeout>0</Timeout>
+<MethodRewriteType>GET</MethodRewriteType>
+<MethodType>POST</MethodType>
+<MethodType2>POST</MethodType2></StylePolicyAction><SLMPolicy name="WSBancaMovilService" xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/schemas/management">
+<mAdminState>enabled</mAdminState>
+<ExecutionPolicy>execute-all-statements</ExecutionPolicy>
+<APIMgmt>off</APIMgmt></SLMPolicy><StylePolicyAction name="WSBancaMovilService_default_request-rule_defaultaction_slm" xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/schemas/management">
+<mAdminState>enabled</mAdminState>
+<Type>slm</Type>
+<Input>dpvar_1</Input>
+<ActionDebug persisted="false">off</ActionDebug>
+<Output>NULL</Output>
+<NamedInOutLocationType>default</NamedInOutLocationType>
+<Transactional>off</Transactional>
+<SLMPolicy>WSBancaMovilService</SLMPolicy>
+<SOAPValidation>body</SOAPValidation>
+<SQLSourceType>static</SQLSourceType>
+<Asynchronous>off</Asynchronous>
+<ResultsMode>first-available</ResultsMode>
+<RetryCount>0</RetryCount>
+<RetryInterval>1000</RetryInterval>
+<MultipleOutputs>off</MultipleOutputs>
+<IteratorType>XPATH</IteratorType>
+<Timeout>0</Timeout>
+<MethodRewriteType>GET</MethodRewriteType>
+<MethodType>POST</MethodType>
+<MethodType2>POST</MethodType2></StylePolicyAction><StylePolicyAction name="WSBancaMovilService_default_request-rule_defaultaction_result" xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/schemas/management">
+<mAdminState>enabled</mAdminState>
+<Type>results</Type>
+<Input>dpvar_1</Input>
+<ActionDebug persisted="false">off</ActionDebug>
+<Output>OUTPUT</Output>
+<NamedInOutLocationType>default</NamedInOutLocationType>
+<OutputType>default</OutputType>
+<Transactional>off</Transactional>
+<SOAPValidation>body</SOAPValidation>
+<SQLSourceType>static</SQLSourceType>
+<Asynchronous>off</Asynchronous>
+<ResultsMode>first-available</ResultsMode>
+<RetryCount>0</RetryCount>
+<RetryInterval>1000</RetryInterval>
+<MultipleOutputs>off</MultipleOutputs>
+<IteratorType>XPATH</IteratorType>
+<Timeout>0</Timeout>
+<MethodRewriteType>GET</MethodRewriteType>
+<MethodType>POST</MethodType>
+<MethodType2>POST</MethodType2></StylePolicyAction><WSStylePolicyRule name="WSBancaMovilService_default_request-rule" xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/schemas/management">
+<mAdminState>enabled</mAdminState>
+<Direction>request-rule</Direction>
+<InputFormat>none</InputFormat>
+<OutputFormat>none</OutputFormat>
+<NonXMLProcessing>off</NonXMLProcessing>
+<Unprocessed>off</Unprocessed>
+<Actions class="StylePolicyAction">WSBancaMovilService_default_request-rule_xform_0</Actions>
+<Actions class="StylePolicyAction">WSBancaMovilService_default_request-rule_defaultaction_slm</Actions>
+<Actions class="StylePolicyAction">WSBancaMovilService_default_request-rule_defaultaction_result</Actions></WSStylePolicyRule><StylePolicyAction name="WSBancaMovilService_default_response-rule_defaultaction_result" xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/schemas/management">
+<mAdminState>enabled</mAdminState>
+<Type>results</Type>
+<Input>INPUT</Input>
+<ActionDebug persisted="false">off</ActionDebug>
+<Output>OUTPUT</Output>
+<NamedInOutLocationType>default</NamedInOutLocationType>
+<OutputType>default</OutputType>
+<Transactional>off</Transactional>
+<SOAPValidation>body</SOAPValidation>
+<SQLSourceType>static</SQLSourceType>
+<Asynchronous>off</Asynchronous>
+<ResultsMode>first-available</ResultsMode>
+<RetryCount>0</RetryCount>
+<RetryInterval>1000</RetryInterval>
+<MultipleOutputs>off</MultipleOutputs>
+<IteratorType>XPATH</IteratorType>
+<Timeout>0</Timeout>
+<MethodRewriteType>GET</MethodRewriteType>
+<MethodType>POST</MethodType>
+<MethodType2>POST</MethodType2></StylePolicyAction><WSStylePolicyRule name="WSBancaMovilService_default_response-rule" xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/schemas/management">
+<mAdminState>enabled</mAdminState>
+<Direction>response-rule</Direction>
+<InputFormat>none</InputFormat>
+<OutputFormat>none</OutputFormat>
+<NonXMLProcessing>off</NonXMLProcessing>
+<Unprocessed>off</Unprocessed>
+<Actions class="StylePolicyAction">WSBancaMovilService_default_response-rule_defaultaction_result</Actions></WSStylePolicyRule><WSStylePolicy name="WSBancaMovilService" xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/schemas/management">
+<mAdminState>enabled</mAdminState>
+<DefStylesheetForSoap>store:///filter-reject-all.xsl</DefStylesheetForSoap>
+<DefStylesheetForXsl>store:///identity.xsl</DefStylesheetForXsl>
+<PolicyMaps>
+<WSDLComponentType>fragmentid</WSDLComponentType>
+<WSDLComponentValue/>
+<Match class="Matching">WSBancamovilService_match_by_recaudo</Match>
+<Rule class="WSStylePolicyRule">WSBancaMovilService_recaudos_req</Rule>
+<Subscription/>
+<WSDLFragmentID>http://www.datapower.com/fragment-id#dp.all()</WSDLFragmentID></PolicyMaps>
+<PolicyMaps>
+<WSDLComponentType>fragmentid</WSDLComponentType>
+<WSDLComponentValue/>
+<Match class="Matching">WSBancaMovilService_match_all</Match>
+<Rule class="WSStylePolicyRule">WSBancaMovilService_default_request-rule</Rule>
+<Subscription/>
+<WSDLFragmentID>http://www.datapower.com/fragment-id#dp.all()</WSDLFragmentID></PolicyMaps>
+<PolicyMaps>
+<WSDLComponentType>fragmentid</WSDLComponentType>
+<WSDLComponentValue/>
+<Match class="Matching">WSBancaMovilService_match_all</Match>
+<Rule class="WSStylePolicyRule">WSBancaMovilService_default_response-rule</Rule>
+<Subscription/>
+<WSDLFragmentID>http://www.datapower.com/fragment-id#dp.all()</WSDLFragmentID></PolicyMaps></WSStylePolicy><PolicyAttachments name="WSBancaMovilService_BancaMovilF2TXCORP.wsdl" xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/schemas/management">
+<mAdminState>enabled</mAdminState>
+<EnforcementMode>enforce</EnforcementMode>
+<PolicyReferences>on</PolicyReferences>
+<SLAEnforcementMode>allow-if-no-sla</SLAEnforcementMode></PolicyAttachments><WSGateway name="WSBancaMovilService" xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/schemas/management">
+<mAdminState>enabled</mAdminState>
+<Priority>normal</Priority>
+<XMLManager class="XMLManager">default</XMLManager>
+<DefaultParamNamespace>http://www.datapower.com/param/config</DefaultParamNamespace>
+<QueryParamNamespace>http://www.datapower.com/param/query</QueryParamNamespace>
+<PropagateURI>off</PropagateURI>
+<MonitorProcessingPolicy>terminate-at-first-throttle</MonitorProcessingPolicy>
+<RequestAttachments>strip</RequestAttachments>
+<ResponseAttachments>strip</ResponseAttachments>
+<RequestAttachmentsFlowControl>off</RequestAttachmentsFlowControl>
+<ResponseAttachmentsFlowControl>off</ResponseAttachmentsFlowControl>
+<RootPartNotFirstAction>process-in-order</RootPartNotFirstAction>
+<FrontAttachmentFormat>dynamic</FrontAttachmentFormat>
+<BackAttachmentFormat>dynamic</BackAttachmentFormat>
+<MIMEFrontHeaders>on</MIMEFrontHeaders>
+<MIMEBackHeaders>on</MIMEBackHeaders>
+<StreamOutputToBack>buffer-until-verification</StreamOutputToBack>
+<StreamOutputToFront>buffer-until-verification</StreamOutputToFront>
+<MaxMessageSize>0</MaxMessageSize>
+<GatewayParserLimits>off</GatewayParserLimits>
+<ParserLimitsElementDepth>512</ParserLimitsElementDepth>
+<ParserLimitsAttributeCount>128</ParserLimitsAttributeCount>
+<ParserLimitsMaxNodeSize>33554432</ParserLimitsMaxNodeSize>
+<ParserLimitsForbidExternalReferences>on</ParserLimitsForbidExternalReferences>
+<ParserLimitsExternalReferences>forbid</ParserLimitsExternalReferences>
+<ParserLimitsMaxPrefixes>1024</ParserLimitsMaxPrefixes>
+<ParserLimitsMaxNamespaces>1024</ParserLimitsMaxNamespaces>
+<ParserLimitsMaxLocalNames>60000</ParserLimitsMaxLocalNames>
+<ParserLimitsAttachmentByteCount>2000000000</ParserLimitsAttachmentByteCount>
+<ParserLimitsAttachmentPackageByteCount>0</ParserLimitsAttachmentPackageByteCount>
+<DebugMode persisted="false">on</DebugMode>
+<DebuggerType>internal</DebuggerType>
+<DebugHistory>25</DebugHistory>
+<FlowControl>off</FlowControl>
+<SOAPSchemaURL>store:///schemas/soap-envelope.xsd</SOAPSchemaURL>
+<FrontTimeout>120</FrontTimeout>
+<BackTimeout>120</BackTimeout>
+<FrontPersistentTimeout>180</FrontPersistentTimeout>
+<BackPersistentTimeout>180</BackPersistentTimeout>
+<IncludeResponseTypeEncoding>off</IncludeResponseTypeEncoding>
+<BackHTTPVersion>HTTP/1.1</BackHTTPVersion>
+<PersistentConnections>on</PersistentConnections>
+<LoopDetection>off</LoopDetection>
+<DoHostRewriting>on</DoHostRewriting>
+<DoChunkedUpload>off</DoChunkedUpload>
+<ProcessHTTPErrors>on</ProcessHTTPErrors>
+<HTTPClientIPLabel>X-Client-IP</HTTPClientIPLabel>
+<HTTPLogCorIDLabel>X-Global-Transaction-ID</HTTPLogCorIDLabel>
+<InOrderMode>
+<Request>off</Request>
+<Backend>off</Backend>
+<Response>off</Response></InOrderMode>
+<WSAMode>sync2sync</WSAMode>
+<WSARequireAAA>on</WSARequireAAA>
+<WSAStrip>on</WSAStrip>
+<WSADefaultReplyTo>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</WSADefaultReplyTo>
+<WSADefaultFaultTo>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</WSADefaultFaultTo>
+<WSAForce>off</WSAForce>
+<WSAGenStyle>sync</WSAGenStyle>
+<WSAHTTPAsyncResponseCode>204</WSAHTTPAsyncResponseCode>
+<WSATimeout>120</WSATimeout>
+<WSRMEnabled>off</WSRMEnabled>
+<WSRMSequenceExpiration>3600</WSRMSequenceExpiration>
+<WSRMDestinationAcceptCreateSequence>on</WSRMDestinationAcceptCreateSequence>
+<WSRMDestinationMaximumSequences>400</WSRMDestinationMaximumSequences>
+<WSRMDestinationInOrder>off</WSRMDestinationInOrder>
+<WSRMDestinationMaximumInOrderQueueLength>10</WSRMDestinationMaximumInOrderQueueLength>
+<WSRMDestinationAcceptOffers>off</WSRMDestinationAcceptOffers>
+<WSRMFrontForce>off</WSRMFrontForce>
+<WSRMBackForce>off</WSRMBackForce>
+<WSRMBackCreateSequence>off</WSRMBackCreateSequence>
+<WSRMFrontCreateSequence>off</WSRMFrontCreateSequence>
+<WSRMSourceMakeOffer>off</WSRMSourceMakeOffer>
+<WSRMUsesSequenceSSL>off</WSRMUsesSequenceSSL>
+<WSRMSourceMaximumSequences>400</WSRMSourceMaximumSequences>
+<WSRMSourceRetransmissionInterval>10</WSRMSourceRetransmissionInterval>
+<WSRMSourceExponentialBackoff>on</WSRMSourceExponentialBackoff>
+<WSRMSourceMaximumRetransmissions>4</WSRMSourceMaximumRetransmissions>
+<WSRMSourceMaximumQueueLength>30</WSRMSourceMaximumQueueLength>
+<WSRMSourceRequestAckCount>1</WSRMSourceRequestAckCount>
+<WSRMSourceInactivityClose>360</WSRMSourceInactivityClose>
+<ForcePolicyExec>off</ForcePolicyExec>
+<RewriteErrors>on</RewriteErrors>
+<DelayErrors>on</DelayErrors>
+<DelayErrorsDuration>3000</DelayErrorsDuration>
+<RequestType>soap</RequestType>
+<ResponseType>soap</ResponseType>
+<FollowRedirects>on</FollowRedirects>
+<AllowCompression>off</AllowCompression>
+<AllowCacheControlHeader>off</AllowCacheControlHeader>
+<Type>dynamic-backend</Type>
+<AutoCreateSources>off</AutoCreateSources>
+<EndpointRewritePolicy class="WSEndpointRewritePolicy">WSBancaMovilService</EndpointRewritePolicy>
+<GeneratedPolicies class="GeneratedPolicy">__gp_1470342714_0472</GeneratedPolicies>
+<StylePolicy class="WSStylePolicy">WSBancaMovilService</StylePolicy>
+<RemoteFetchRetry>
+<AutomaticRetry>off</AutomaticRetry>
+<RetryInterval>1</RetryInterval>
+<ReportingInterval>1</ReportingInterval>
+<TotalRetries>1</TotalRetries></RemoteFetchRetry>
+<BaseWSDL>
+<WSDLSourceLocation>local:///proyectos/BancaMovil/wsdl/BancaMovilF2TXCORP.wsdl</WSDLSourceLocation>
+<WSDLName>BancaMovilF2TXCORP.wsdl</WSDLName>
+<PolicyAttachments class="PolicyAttachments">WSBancaMovilService_BancaMovilF2TXCORP.wsdl</PolicyAttachments></BaseWSDL>
+<UserToggles>
+<WSDLName/>
+<ServiceName/>
+<ServicePortName/>
+<PortTypeName/>
+<BindingName/>
+<OperationName/>
+<Toggles>
+<Enable>on</Enable>
+<Publish>on</Publish>
+<VerifyFaults>on</VerifyFaults>
+<VerifyHeaders>off</VerifyHeaders>
+<NoRequestValidation>off</NoRequestValidation>
+<NoResponseValidation>on</NoResponseValidation>
+<SuppressFaultsElementsForRPCWrappers>off</SuppressFaultsElementsForRPCWrappers>
+<NoWSA>off</NoWSA>
+<NoWSRM>off</NoWSRM>
+<AllowXOPInclude>on</AllowXOPInclude></Toggles>
+<Subscription/>
+<UseFragmentID>on</UseFragmentID>
+<FragmentID>http://www.bbvanet.com.co/BancaMovilTX/#dp.wsdlName(BancaMovilF2TXCORP.wsdl)</FragmentID></UserToggles>
+<EncryptedKeySHA1CacheLifeTime>0</EncryptedKeySHA1CacheLifeTime>
+<PreserveKeyChain>off</PreserveKeyChain>
+<DecryptWithKeyFromED>off</DecryptWithKeyFromED>
+<SOAPActionPolicy>lax</SOAPActionPolicy>
+<WSMAgentMonitor>on</WSMAgentMonitor>
+<WSMAgentMonitorPCM>all-messages</WSMAgentMonitorPCM>
+<ProcessRespRulesOnOneWayMEP>off</ProcessRespRulesOnOneWayMEP></WSGateway></configuration><files><file name="local:///proyectos/BancaMovil/Recaudos/routing_by_recaudos.xsl" src="local/proyectos/BancaMovil/Recaudos/routing_by_recaudos.xsl" location="local" hash="+oARdaZ+WtJ0LfdZdlH0kEaykhU="/><file name="local:///proyectos/BancaMovil/Recaudos/routing_by_other.xsl" src="local/proyectos/BancaMovil/Recaudos/routing_by_other.xsl" location="local" hash="t1piDiiSDvLPezjXy20yRw2eCug="/><file name="local:///proyectos/BancaMovil/wsdl/BancaMovilF2TXCORP.wsdl" src="local/proyectos/BancaMovil/wsdl/BancaMovilF2TXCORP.wsdl" location="local" hash="/Av8O60uiOftnZ41uNuKMV4WEN4="/><file name="local:///proyectos/BancaMovil/wsdl/F2BANCAMOVILTXCORP.xsd" src="local/proyectos/BancaMovil/wsdl/F2BANCAMOVILTXCORP.xsd" location="local" hash="RHkvPoh80s3/ot4cvLRK/H3GZSM="/><file name="webgui:///clixform.xsl" src="dp-aux/clixform.xsl" location="dp-aux" internal="true" hash="Yu2wEOs0VmAVlzJN6hx79jjE3C0="/><file name="webgui:///SchemaUtil.xsl" src="dp-aux/SchemaUtil.xsl" location="dp-aux" internal="true" hash="8fmsXUfiaQKycD1E2HoNtTPk95c="/><file name="webgui:///management.xsl" src="dp-aux/management.xsl" location="dp-aux" internal="true" hash="EOeJnfXfGxgKVTgNTGthBkYOdf4="/><file name="webgui:///map-dmz.xsl" src="dp-aux/map-dmz.xsl" location="dp-aux" internal="true" hash="n00B2bmGoH6OdSOW1QRz/SNVbYc="/><file name="webgui:///drMgmt.xml" src="dp-aux/drMgmt.xml" location="dp-aux" internal="true" hash="zRWAgGHWvO6G0w4uC1OKNY1Axj8="/><file name="webgui:///basetypes.xml" src="dp-aux/basetypes.xml" location="dp-aux" internal="true" hash="8m6uyk3gbCIu6pjYJYalNKzdqrc="/></files></datapower-configuration>
