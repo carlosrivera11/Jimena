@@ -12,7 +12,7 @@
 <SupportTxWarn>off</SupportTxWarn>
 <Memoization>on</Memoization>
 <ParserLimitsBytesScanned>4194304</ParserLimitsBytesScanned>
-<ParserLimitsElementDepth>512</ParserLimitsElementDepth>
+						<ParserLimitsElementDepth>512</ParserLimitsElementDepth>
 <ParserLimitsAttributeCount>128</ParserLimitsAttributeCount>
 <ParserLimitsMaxNodeSize>33554432</ParserLimitsMaxNodeSize>
 <ParserLimitsForbidExternalReferences>on</ParserLimitsForbidExternalReferences>
@@ -173,7 +173,7 @@
 <APIMgmt>off</APIMgmt></SLMPolicy><StylePolicyAction name="WSBancaMovilService_default_request-rule_defaultaction_slm" xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/schemas/management">
 <mAdminState>enabled</mAdminState>
 <Type>slm</Type>
-<Input>dpvar_1</Input>
+<Input>dpvar_123</Input>
 <ActionDebug persisted="false">off</ActionDebug>
 <Output>NULL</Output>
 <NamedInOutLocationType>default</NamedInOutLocationType>
