@@ -11,7 +11,7 @@
 	</wsdl:types>
 	<!--HiPSO: fin­ -->
 	<!--HiPSO: desde inicio­ -->
-	<wsdl:message name="posicionGlobal1">
+	<wsdl:message name="posicionGlobalRequest">
 		<wsdl:part element="tns:POSICIONGLOBAL" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="posicionGlobalResponse">
@@ -1027,4 +1027,4 @@
 		</wsdl:port>
 	</wsdl:service>
 	<!--HiPSO: hasta fin­ -->
-</wsdl:definitions>
+<wsdl:definitions>
