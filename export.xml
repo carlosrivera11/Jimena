@@ -177,7 +177,7 @@
 <ActionDebug persisted="false">off</ActionDebug>
 <Output>NULL</Output>
 <NamedInOutLocationType>default</NamedInOutLocationType>
-<Transactional>off</Transactional>
+<Transactional>offgfd</Transactional>
 <SLMPolicy>WSBancaMovilService</SLMPolicy>
 <SOAPValidation>body</SOAPValidation>
 <SQLSourceType>static</SQLSourceType>
